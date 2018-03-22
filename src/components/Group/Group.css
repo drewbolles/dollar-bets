@@ -1,0 +1,43 @@
+.group {
+  margin-bottom: 24px;
+  border: 1px solid #ccc;
+}
+
+.group:last-child {
+  margin-bottom: 24px;
+}
+
+.group-header {
+  padding: 16px;
+  border-bottom: 1px solid #ccc;
+}
+
+.group-name {
+  margin-bottom: 0;
+}
+
+.group-event {
+  margin-bottom: 0;
+  text-transform: capitalize;
+}
+
+.group-content {
+  padding: 16px;
+}
+
+.add-member-form {
+  margin-bottom: 24px;
+}
+
+@media (min-width: 600px) {
+  .add-member-form .form-content {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.group-footer {
+  border-top: 1px solid #ccc;
+  padding: 16px;
+  text-align: right;
+}

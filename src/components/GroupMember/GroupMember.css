@@ -1,0 +1,39 @@
+.group-members {
+  border-bottom: 1px solid #ccc;
+}
+
+.group-member {
+  display: flex;
+  align-items: center;
+  padding-left: 16px;
+  border: 1px solid #ccc;
+  border-width: 1px 1px 0 1px;
+}
+
+.group-member:nth-child(even) {
+  background-color: #f1f1f1;
+}
+
+.group-member-name {
+  margin-bottom: 0;
+}
+
+.group-member-action,
+.group-member-score {
+  width: 48px;
+  height: 48px;
+}
+
+.group-member-action {
+  border: 1px solid #ccc;
+  font-size: 24px;
+}
+
+.group-member-action--add {
+  margin-left: auto;
+}
+
+.group-member-score {
+  text-align: center;
+  line-height: 48px;
+}

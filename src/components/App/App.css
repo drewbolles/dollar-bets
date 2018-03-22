@@ -1,0 +1,37 @@
+.app {
+  display: flex;
+  flex-flow: column;
+  min-height: 100vh;
+}
+
+.app-header {
+  height: 64px;
+  margin-bottom: 24px;
+  background-color: #ccc;
+}
+
+.app-title {
+  margin-bottom: 0;
+  line-height: 64px;
+}
+
+.app-content {
+  flex-grow: 1;
+}
+
+.add-group-form {
+  margin-bottom: 24px;
+}
+
+@media (min-width: 600px) {
+  .add-group-form .form-content {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.app-footer {
+  padding: 16px;
+  background-color: #ccc;
+  font-size: 14px;
+}
