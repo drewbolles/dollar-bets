@@ -52,6 +52,7 @@ class App extends Component {
                   <input
                     id="groupName"
                     type="text"
+                    placeholder="ex: March Madness"
                     required
                     value={groupName}
                     onChange={this.handleChange}
