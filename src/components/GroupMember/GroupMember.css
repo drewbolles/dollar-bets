@@ -47,6 +47,7 @@
 }
 
 .group-member-score {
+  font-weight: 700;
   text-align: center;
   line-height: 48px;
 }
