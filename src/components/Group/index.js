@@ -55,7 +55,10 @@ class Group extends Component {
           <h3 className="group-event">{event}</h3>
         </header>
         <div className="group-content">
-          <form className="form add-member-form" onSubmit={this.handleSubmit}>
+          <form
+            className="form form--inline add-member-form"
+            onSubmit={this.handleSubmit}
+          >
             <h3 className="form-title">Add Group Member</h3>
             <div className="form-content">
               <div className="form-item">

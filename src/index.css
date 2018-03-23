@@ -13,6 +13,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -moz-font-feature-settings: 'liga' on;
+  color: #424242;
 }
 
 h1,
@@ -27,4 +28,42 @@ ul,
 blockquote {
   margin-top: 0;
   margin-bottom: 24px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #212121;
+  line-height: 1.2;
+}
+
+button {
+  cursor: pointer;
+  vertical-align: middle;
+}
+
+label {
+  display: block;
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  vertical-align: middle;
+}
+
+input {
+  height: 36px;
+  padding: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  border-radius: 2px;
+}
+
+select {
+  height: 36px;
+}
+
+input:focus {
+  border-color: #1565c0;
 }

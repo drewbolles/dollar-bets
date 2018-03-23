@@ -7,12 +7,14 @@
 .app-header {
   height: 64px;
   margin-bottom: 24px;
-  background-color: #ccc;
+  background-color: #1565c0;
+  color: #fff;
 }
 
 .app-title {
   margin-bottom: 0;
   line-height: 64px;
+  color: #fff;
 }
 
 .app-content {
@@ -23,15 +25,27 @@
   margin-bottom: 24px;
 }
 
-@media (min-width: 600px) {
-  .add-group-form .form-content {
-    display: flex;
-    align-items: center;
-  }
-}
-
 .app-footer {
   padding: 16px;
-  background-color: #ccc;
+  background-color: #1565c0;
   font-size: 14px;
+  color: #fff;
+}
+
+.form-title {
+  margin-bottom: 6px;
+}
+
+@media (min-width: 600px) {
+  .form--inline .form-content {
+    display: flex;
+    align-items: flex-end;
+  }
+
+  .form--inline .form-item {
+    margin-right: 16px;
+  }
+
+  .form--inline label {
+  }
 }

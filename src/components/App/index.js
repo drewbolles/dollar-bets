@@ -41,7 +41,10 @@ class App extends Component {
         </header>
         <div className="app-content">
           <Container>
-            <form className="form add-group-form" onSubmit={this.handleSubmit}>
+            <form
+              className="form form--inline add-group-form"
+              onSubmit={this.handleSubmit}
+            >
               <h2 className="form-title">Add a Group</h2>
               <div className="form-content">
                 <div className="form-item">
