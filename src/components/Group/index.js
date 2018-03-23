@@ -52,7 +52,9 @@ class Group extends Component {
       <div className="group">
         <header className="group-header">
           <h2 className="group-name">
-            {group.name} / <small>{group.event}</small>
+            {group.name}
+            {group.event && ' / '}
+            <small>{group.event}</small>
           </h2>
         </header>
         <div className="group-content">

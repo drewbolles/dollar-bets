@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "homepage": "https://drewbolles.github.io/dollar-bets",
   "private": true,
+  "browserslist": ["> 1%", "last 2 versions", "safari >= 7"],
   "dependencies": {
     "gh-pages": "^1.1.0",
     "normalize.css": "^8.0.0",

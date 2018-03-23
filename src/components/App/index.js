@@ -94,7 +94,7 @@ class App extends Component {
                 </div>
               </div>
             </form>
-            {groups.length > 0 && (
+            {groups.length > 0 ? (
               <div className="groups">
                 {groups.map((group, index) => (
                   <Group
@@ -103,6 +103,14 @@ class App extends Component {
                     removeHandler={this.handleGroupRemove}
                   />
                 ))}
+              </div>
+            ) : (
+              <div className="intro">
+                <p>
+                  Welcome to Dollar Bets, a simple tracker for your friendly
+                  dollar bets. Start by creating a group, add any members that
+                  are partaking in the bets, and start tracking.
+                </p>
               </div>
             )}
           </Container>
