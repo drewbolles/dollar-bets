@@ -19,7 +19,10 @@ class App extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
+
     this.setState(prevState => ({
+      groupName: '',
+      groupEvent: '',
       groups: [
         ...prevState.groups,
         {
@@ -66,7 +69,7 @@ class App extends Component {
               <h2 className="form-title">Add a Group</h2>
               <div className="form-content">
                 <div className="form-item">
-                  <label htmlFor="groupName">Name</label>
+                  <label htmlFor="groupName">Name*</label>
                   <input
                     id="groupName"
                     type="text"

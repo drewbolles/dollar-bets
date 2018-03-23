@@ -65,7 +65,7 @@ class Group extends Component {
             <h3 className="form-title">Add Group Member</h3>
             <div className="form-content">
               <div className="form-item">
-                <label htmlFor="memberName">Name</label>
+                <label htmlFor="memberName">Name*</label>
                 <input
                   type="text"
                   id="memberName"
