@@ -17,6 +17,7 @@ class Group extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
+
     this.setState(prevState => ({
       memberName: '',
       members: [
@@ -31,10 +32,6 @@ class Group extends Component {
     this.setState(prevState => ({
       members: prevState.members.filter(member => member.id !== id),
     }));
-  };
-
-  handleEventEnd = () => {
-    this.setState({ active: false });
   };
 
   handleActiveToggle = () => {
