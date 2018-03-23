@@ -3,6 +3,7 @@ import uuid from 'uuid/v4';
 import Container from '../Container';
 import Group from '../Group';
 import Button from '../Button';
+import Icon from '../Icon';
 import './App.css';
 
 class App extends Component {
@@ -42,7 +43,18 @@ class App extends Component {
       <div className="app">
         <header className="app-header">
           <Container>
-            <h1 className="app-title">Dollar Bets</h1>
+            <div className="app-header-row">
+              <h1 className="app-title">Dollar Bets</h1>
+              <nav className="app-nav">
+                <button
+                  className="app-nav-item"
+                  aria-label="Add a new group"
+                  title="Add a new group"
+                >
+                  <Icon icon="add" /> Add Group
+                </button>
+              </nav>
+            </div>
           </Container>
         </header>
         <div className="app-content">

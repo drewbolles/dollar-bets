@@ -19,6 +19,12 @@
 .group-name {
   margin-bottom: 0;
   color: #fff;
+  letter-spacing: 0.04em;
+  text-transform: capitalize;
+}
+
+.group-name small {
+  font-weight: 400;
 }
 
 .group-event {

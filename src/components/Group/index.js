@@ -51,8 +51,9 @@ class Group extends Component {
     return (
       <div className="group">
         <header className="group-header">
-          <h2 className="group-name">{group.name}</h2>
-          <h3 className="group-event">{group.event}</h3>
+          <h2 className="group-name">
+            {group.name} / <small>{group.event}</small>
+          </h2>
         </header>
         <div className="group-content">
           <form
