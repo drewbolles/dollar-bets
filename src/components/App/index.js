@@ -30,6 +30,12 @@ class App extends Component {
     }));
   };
 
+  handleGroupRemove = id => {
+    this.setState(prevState => ({
+      groups: prevState.groups.filter(group => group.id !== id),
+    }));
+  };
+
   render() {
     const { groupName, groupEvent, groups } = this.state;
     return (
@@ -79,7 +85,11 @@ class App extends Component {
             {groups.length > 0 && (
               <div className="groups">
                 {groups.map((group, index) => (
-                  <Group group={group} key={group.id} />
+                  <Group
+                    group={group}
+                    key={group.id}
+                    removeHandler={this.handleGroupRemove}
+                  />
                 ))}
               </div>
             )}

@@ -46,13 +46,13 @@ class Group extends Component {
   }
 
   render() {
-    const { name, event } = this.props.group;
+    const { group, removeHandler } = this.props;
     const { memberName, members, active } = this.state;
     return (
       <div className="group">
         <header className="group-header">
-          <h2 className="group-name">{name}</h2>
-          <h3 className="group-event">{event}</h3>
+          <h2 className="group-name">{group.name}</h2>
+          <h3 className="group-event">{group.event}</h3>
         </header>
         <div className="group-content">
           <form
@@ -93,6 +93,14 @@ class Group extends Component {
           )}
         </div>
         <footer className="group-footer">
+          <Button
+            alt
+            onClick={() => {
+              removeHandler(group.id);
+            }}
+          >
+            Close Group
+          </Button>
           <Button onClick={this.handleActiveToggle}>
             {active ? 'End Event' : 'Start Event'}
           </Button>
