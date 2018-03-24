@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import uuid from 'uuid/v4';
+import localforage from 'localforage';
 import GroupMember from '../GroupMember';
 import Button from '../Button';
 import './Group.css';
@@ -18,27 +19,68 @@ class Group extends Component {
   handleSubmit = event => {
     event.preventDefault();
 
-    this.setState(prevState => ({
-      memberName: '',
-      members: [
-        ...prevState.members,
-        { name: this.state.memberName, id: uuid() },
-      ],
-    }));
+    this.setState(
+      prevState => ({
+        memberName: '',
+        members: [
+          ...prevState.members,
+          { name: this.state.memberName, id: uuid(), score: 0 },
+        ],
+      }),
+      () => {
+        this.handleMembersSave();
+      },
+    );
     this.memberName.focus();
   };
 
   handleMemberRemove = id => {
-    this.setState(prevState => ({
-      members: prevState.members.filter(member => member.id !== id),
-    }));
+    this.setState(
+      prevState => ({
+        members: prevState.members.filter(member => member.id !== id),
+      }),
+      () => {
+        this.handleMembersSave();
+      },
+    );
+  };
+
+  handleMemberScore = (id, dir = 'increase') => {
+    const adjustment = dir === 'increase' ? 1 : -1;
+    const member = this.state.members.find(member => member.id === id);
+
+    member.score =
+      member.score + adjustment >= 0 ? member.score + adjustment : 0;
+
+    this.setState(
+      prevState => ({
+        members: [...prevState.members, ...member],
+      }),
+      () => {
+        this.handleMembersSave();
+      },
+    );
   };
 
   handleActiveToggle = () => {
     this.setState(prevState => ({ active: !prevState.active }));
   };
 
+  handleMembersSave = () => {
+    localforage.setItem(
+      `DOLLAR-BET-GROUP:${this.props.group.id}`,
+      this.state.members,
+    );
+  };
+
   componentDidMount() {
+    localforage
+      .getItem(`DOLLAR-BET-GROUP:${this.props.group.id}`)
+      .then(members => {
+        if (members) {
+          this.setState({ members });
+        }
+      });
     this.memberName.focus();
   }
 
@@ -91,6 +133,7 @@ class Group extends Component {
                   member={member}
                   active={active}
                   removeHandler={this.handleMemberRemove}
+                  scoreHandler={this.handleMemberScore}
                 />
               ))}
             </div>

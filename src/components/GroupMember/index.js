@@ -23,7 +23,7 @@ class GroupMember extends Component {
   };
 
   render() {
-    const { member, active, removeHandler } = this.props;
+    const { member, active, removeHandler, scoreHandler } = this.props;
     const { score } = this.state;
     return (
       <div className="group-member">
@@ -39,7 +39,9 @@ class GroupMember extends Component {
         <h4 className="group-member-name">{member.name}</h4>
         <button
           className="group-member-action group-member-action--add"
-          onClick={this.handleIncrease}
+          onClick={() => {
+            scoreHandler(member.id);
+          }}
           {...!active && { disabled: 'disabled ' }}
           title="Add a dollar"
         >
@@ -47,13 +49,15 @@ class GroupMember extends Component {
         </button>
         <button
           className="group-member-action group-member-action--minus"
-          onClick={this.handleDecrease}
+          onClick={() => {
+            scoreHandler(member.id, 'decrease');
+          }}
           {...!active && { disabled: 'disabled ' }}
           title="Remove a dollar"
         >
           <Icon icon="remove" />
         </button>
-        <div className="group-member-score">${score}</div>
+        <div className="group-member-score">${member.score}</div>
       </div>
     );
   }

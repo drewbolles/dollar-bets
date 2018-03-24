@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import uuid from 'uuid/v4';
+import localforage from 'localforage';
 import Container from '../Container';
 import Group from '../Group';
 import Button from '../Button';
 import Icon from '../Icon';
+import { events } from '../../utils/events';
 import './App.css';
 
 class App extends Component {
@@ -20,25 +22,49 @@ class App extends Component {
   handleSubmit = event => {
     event.preventDefault();
 
-    this.setState(prevState => ({
-      groupName: '',
-      groupEvent: '',
-      groups: [
-        ...prevState.groups,
-        {
-          name: this.state.groupName,
-          event: this.state.groupEvent,
-          id: uuid(),
-        },
-      ],
-    }));
+    this.setState(
+      prevState => ({
+        groupName: '',
+        groupEvent: '',
+        groups: [
+          ...prevState.groups,
+          {
+            name: this.state.groupName,
+            event: this.state.groupEvent,
+            id: uuid(),
+          },
+        ],
+      }),
+      () => {
+        this.handleGroupSave();
+      },
+    );
   };
 
   handleGroupRemove = id => {
-    this.setState(prevState => ({
-      groups: prevState.groups.filter(group => group.id !== id),
-    }));
+    this.setState(
+      prevState => ({
+        groups: prevState.groups.filter(group => group.id !== id),
+      }),
+      () => {
+        this.handleGroupSave();
+      },
+    );
   };
+
+  handleGroupSave = () => {
+    localforage.setItem('DOLLAR-BET-GROUPS', this.state.groups);
+  };
+
+  componentDidMount() {
+    localforage.getItem('DOLLAR-BET-GROUPS').then(groups => {
+      if (groups) {
+        this.setState({
+          groups,
+        });
+      }
+    });
+  }
 
   render() {
     const { groupName, groupEvent, groups } = this.state;
@@ -87,9 +113,11 @@ class App extends Component {
                     onChange={this.handleChange}
                   >
                     <option value="">-- Select Event --</option>
-                    <option value="golf">Golf</option>
-                    <option value="basketball">Basketball</option>
-                    <option value="football">Football</option>
+                    {events.map((event, index) => (
+                      <option value={event.name} key={index}>
+                        {event.name}
+                      </option>
+                    ))}
                   </select>
                 </div>
                 <div className="form-item form-item--actions">
