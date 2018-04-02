@@ -4,39 +4,70 @@ import './GroupMember.css';
 
 class GroupMember extends Component {
   state = {
-    score: 0,
+    name: this.props.member.name,
+    editable: false,
   };
 
-  handleIncrease = () => {
-    this.setState(prevState => ({
-      score: prevState.score + 1,
-    }));
+  toggleEdit = () => {
+    this.setState(
+      prevState => ({ editable: !prevState.editable }),
+      () => {
+        if (this.state.editable) {
+          this.name.focus();
+        }
+      },
+    );
   };
 
-  handleDecrease = () => {
-    if (this.state.score < 1) {
-      return;
-    }
-    this.setState(prevState => ({
-      score: prevState.score - 1,
-    }));
+  handleChange = event => {
+    this.setState({ [event.target.id]: event.target.value });
+  };
+
+  handleSave = () => {
+    this.props.editHandler(this.props.member.id, this.state.name);
+    this.setState(prevState => ({ editable: !prevState.editable }));
   };
 
   render() {
     const { member, active, removeHandler, scoreHandler } = this.props;
-    const { score } = this.state;
+
+    const { editable, name } = this.state;
+
     return (
       <div className="group-member">
-        <button
-          className="group-member-remove"
-          onClick={() => {
-            removeHandler(member.id);
-          }}
-          title="Remove member from group"
-        >
-          <Icon icon="remove_circle" />
-        </button>
-        <h4 className="group-member-name">{member.name}</h4>
+        <div className="group-member-actions">
+          <button
+            className="group-member-action group-member-remove"
+            onClick={() => {
+              removeHandler(member.id);
+            }}
+            title="Remove member from group"
+          >
+            <Icon icon="remove_circle" />
+          </button>
+          <button
+            className="group-member-action group-member-edit"
+            onClick={this.toggleEdit}
+          >
+            <Icon icon="edit" />
+          </button>
+        </div>
+        {editable ? (
+          <React.Fragment>
+            <input
+              type="text"
+              id="name"
+              value={name}
+              onChange={this.handleChange}
+              ref={name => {
+                this.name = name;
+              }}
+            />
+            <button onClick={this.handleSave}>Save</button>
+          </React.Fragment>
+        ) : (
+          <h4 className="group-member-name">{member.name}</h4>
+        )}
         <button
           className="group-member-action group-member-action--add"
           onClick={() => {

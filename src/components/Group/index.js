@@ -34,6 +34,22 @@ class Group extends Component {
     this.memberName.focus();
   };
 
+  handleMemberEdit = (id, name) => {
+    this.setState(
+      prevState => ({
+        members: prevState.members.map(member => {
+          if (member.id === id) {
+            member.name = name;
+          }
+          return member;
+        }),
+      }),
+      () => {
+        this.handleMembersSave();
+      },
+    );
+  };
+
   handleMemberRemove = id => {
     this.setState(
       prevState => ({
@@ -132,6 +148,7 @@ class Group extends Component {
                   key={member.id}
                   member={member}
                   active={active}
+                  editHandler={this.handleMemberEdit}
                   removeHandler={this.handleMemberRemove}
                   scoreHandler={this.handleMemberScore}
                 />
