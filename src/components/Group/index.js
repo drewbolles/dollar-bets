@@ -19,46 +19,31 @@ class Group extends Component {
   handleSubmit = event => {
     event.preventDefault();
 
-    this.setState(
-      prevState => ({
-        memberName: '',
-        members: [
-          ...prevState.members,
-          { name: this.state.memberName, id: uuid(), score: 0 },
-        ],
-      }),
-      () => {
-        this.handleMembersSave();
-      },
-    );
+    this.setState(prevState => ({
+      memberName: '',
+      members: [
+        ...prevState.members,
+        { name: this.state.memberName, id: uuid(), score: 0 },
+      ],
+    }));
     this.memberName.focus();
   };
 
   handleMemberEdit = (id, name) => {
-    this.setState(
-      prevState => ({
-        members: prevState.members.map(member => {
-          if (member.id === id) {
-            member.name = name;
-          }
-          return member;
-        }),
+    this.setState(prevState => ({
+      members: prevState.members.map(member => {
+        if (member.id === id) {
+          member.name = name;
+        }
+        return member;
       }),
-      () => {
-        this.handleMembersSave();
-      },
-    );
+    }));
   };
 
   handleMemberRemove = id => {
-    this.setState(
-      prevState => ({
-        members: prevState.members.filter(member => member.id !== id),
-      }),
-      () => {
-        this.handleMembersSave();
-      },
-    );
+    this.setState(prevState => ({
+      members: prevState.members.filter(member => member.id !== id),
+    }));
   };
 
   handleMemberScore = (id, dir = 'increase') => {
@@ -68,14 +53,9 @@ class Group extends Component {
     member.score =
       member.score + adjustment >= 0 ? member.score + adjustment : 0;
 
-    this.setState(
-      prevState => ({
-        members: [...prevState.members, ...member],
-      }),
-      () => {
-        this.handleMembersSave();
-      },
-    );
+    this.setState(prevState => ({
+      members: [...prevState.members, ...member],
+    }));
   };
 
   handleActiveToggle = () => {
@@ -98,6 +78,10 @@ class Group extends Component {
         }
       });
     this.memberName.focus();
+  }
+
+  componentDidUpdate() {
+    this.handleMembersSave();
   }
 
   render() {
