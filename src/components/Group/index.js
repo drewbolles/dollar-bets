@@ -48,13 +48,14 @@ class Group extends Component {
 
   handleMemberScore = (id, dir = 'increase') => {
     const adjustment = dir === 'increase' ? 1 : -1;
-    const member = this.state.members.find(member => member.id === id);
-
-    member.score =
-      member.score + adjustment >= 0 ? member.score + adjustment : 0;
 
     this.setState(prevState => ({
-      members: [...prevState.members, ...member],
+      members: prevState.members.map(member => {
+        if (member.id === id) {
+          member.score = member.score + adjustment;
+        }
+        return member;
+      }),
     }));
   };
 
